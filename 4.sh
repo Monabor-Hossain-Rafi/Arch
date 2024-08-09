@@ -16,9 +16,14 @@ passwd
 # Static table lookup for hostnames.
 # See hosts (5) for details.
 
+# IPv4
 127.0.0.1    localhost
-::1          localhost
-127.0.1.1    arch.localdomain  arch
+127.0.1.1    arch.localdomain    arch
+
+# IPv6
+::1          localhost ip6-localhost ip6-loopback
+ff02::1      ip6-allnodes
+ff02::2      ip6-allrouters
          ]
      pacman -S grub efibootmgr dosfstools mtools
      grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
