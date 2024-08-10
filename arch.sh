@@ -3,18 +3,7 @@
 # Set the console font for better readability
 setfont ter-132n
 
-# Connect to Wi-Fi using iwctl
-iwctl <<EOF
-station wlan0 connect wifi
-exit
-EOF
-
-# Check internet connectivity
-ping -c 3 google.com
-if [ $? -ne 0 ]; then
-    echo "Network connection failed. Please check your Wi-Fi settings."
-    exit 1
-fi
+# Assuming you have already connected to Wi-Fi manually
 
 # Update the package database and install keyring
 pacman -Sy
@@ -47,11 +36,11 @@ genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt <<EOF_CHROOT
 
 # Set the root password
-echo "root:fuckyou" | chpasswd
+echo "root:your_root_password" | chpasswd
 
 # Create a new user
 useradd -m -g users -G wheel,storage,video,audio -s /bin/bash sasuke
-echo "sasuke:fuckyou" | chpasswd
+echo "sasuke:your_user_password" | chpasswd
 
 # Configure sudoers
 sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
